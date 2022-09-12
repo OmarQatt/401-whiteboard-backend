@@ -4,7 +4,7 @@ const supertest = require("supertest");
 const server = require("../server");
 const request = supertest(server.app);
 
-jest.setTimeout(10000)
+
 describe("get all post", () => {
   it("should get all post", async () => {
     const post = await request.post("/post");
