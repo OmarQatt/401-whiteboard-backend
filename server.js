@@ -4,8 +4,10 @@ const express = require('express')
 const cors = require('cors')
 const app = express()
 const errorHandler = require('./error-handlers/500');
+const postRouter = require('./routes/post.route')
 app.use(cors())
-
+app.use(express.json())
+app.use(postRouter)
 
 app.get('/', (req, res) => {
 res.status(200).json({
@@ -22,5 +24,6 @@ function start(port) {
 
 
 module.exports = {
-    start
+    start,
+    app
 };
