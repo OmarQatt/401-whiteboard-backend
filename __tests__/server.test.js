@@ -4,6 +4,7 @@ const supertest = require("supertest");
 const server = require("../server");
 const request = supertest(server.app);
 
+jest.setTimeout(10000)
 describe("get all post", () => {
   it("should get all post", async () => {
     const post = await request.post("/post");
@@ -30,10 +31,10 @@ describe("create a post", () => {
 });
 describe("updated specific post", () => {
   it("should update a post", async () => {
-    const id = 5;
+    const id = 4;
     const response = await request.put(`/post/${id}`).send({
       post: "omar",
-      postStatus: false,
+      postStatus: false
     });
     expect(response.status).toBe(200);
    
