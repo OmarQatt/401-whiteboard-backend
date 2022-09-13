@@ -34,7 +34,7 @@ describe("updated specific post", () => {
     const id = 4;
     const response = await request.put(`/post/${id}`).send({
       post: "omar",
-      postStatus: false
+      postStatus: true,
     });
     expect(response.status).toBe(200);
    
@@ -43,7 +43,7 @@ describe("updated specific post", () => {
 
 describe("delete specific post", () => {
   it("should delete one post", async () => {
-    const id = 1;
+    const id = 2;
     const post = await request.delete(`/post/${id}`);
     expect(post.status).toBe(204);
   });

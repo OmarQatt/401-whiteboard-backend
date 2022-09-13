@@ -3,11 +3,11 @@
 const Post = (sequelize, DataTypes) => sequelize.define('Post', {
     post: {
         type: DataTypes.STRING,
-        allowToPost: false
+        allowNull: false
     },
     postStatus: {
         type: DataTypes.BOOLEAN,    
-        default: true
+        defaultValue: true
     }
 })
 
