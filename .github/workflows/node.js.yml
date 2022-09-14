@@ -8,8 +8,10 @@ on:
     branches: [ "main" ]
   pull_request:
     branches: [ "main" ]
-env:
-  DATABASE_URL: postgres://hkdrqlxsebrdww:63e770231804f17f4105a8cb9cedf1663b16b78d99411a31a495a82871d6ace1@ec2-54-228-218-84.eu-west-1.compute.amazonaws.com:5432/d373aa7aaq3lqs
+
+env: 
+ DATABASE_URL: postgres://hkdrqlxsebrdww:63e770231804f17f4105a8cb9cedf1663b16b78d99411a31a495a82871d6ace1@ec2-54-228-218-84.eu-west-1.compute.amazonaws.com:5432/d373aa7aaq3lqs
+
 jobs:
   build:
 
