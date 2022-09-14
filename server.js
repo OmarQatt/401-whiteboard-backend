@@ -6,10 +6,13 @@ const app = express()
 const errorHandler = require('./error-handlers/500');
 const errorHandler2 = require('./error-handlers/404');
 const postRouter = require('./routes/post.route')
+const commentRouter = require('./routes/comment.route')
+
+
 app.use(cors())
 app.use(express.json())
 app.use(postRouter)
-
+app.use(commentRouter)
 app.get('/', (req, res) => {
 res.status(200).json({
     message: 'Hello your in the homepage',
@@ -18,7 +21,8 @@ res.status(200).json({
 })
 
 // app.use(errorHandler);
-// app.use(errorHandler2);
+/* istanbul ignore next */
+app.use(errorHandler2);
 function start(port) {
     app.listen(port, () => console.log('listening on port ' + port))
 }
