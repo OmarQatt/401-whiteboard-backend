@@ -31,7 +31,7 @@ describe("create a post", () => {
 });
 describe("updated specific post", () => {
   it("should update a post", async () => {
-    const id = 4;
+    const id = 7;
     const response = await request.put(`/post/${id}`).send({
       post: "omar",
       postStatus: true,
