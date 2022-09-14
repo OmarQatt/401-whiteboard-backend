@@ -50,7 +50,7 @@ async function updatePost(req, res) {
   });
 
   const updatedPost = await post.update(obj);
-  res.status(200).json(updatedPost);
+  res.status(202).json(updatedPost);
 }
 
 module.exports = router;
