@@ -17,14 +17,14 @@ res.status(200).json({
 })
 })
 
-app.use(errorHandler);
-app.use(errorHandler2);
+// app.use(errorHandler);
+// app.use(errorHandler2);
 function start(port) {
     app.listen(port, () => console.log('listening on port ' + port))
 }
 
 
 module.exports = {
-    start,
-    app
+    start:start,
+    app:app
 };

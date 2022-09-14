@@ -13,7 +13,7 @@ router.put("/post/:id", updatePost);
 
 async function getPost(req, res) {
   let post = await Post.findAll();
-  res.status(201).json({
+  res.status(200).json({
     post,
   });
 }
@@ -49,8 +49,8 @@ async function updatePost(req, res) {
     where: { id: id },
   });
 
-  const updatePost = await post.update(obj);
-  res.status(200).json(updatePost);
+  const updatedPost = await post.update(obj);
+  res.status(200).json(updatedPost);
 }
 
 module.exports = router;

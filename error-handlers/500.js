@@ -5,5 +5,5 @@ module.exports = (err, req, res, next) => {
         code: 500,
         message: `Server Error: ${err.message || err}`
     });
-next();
+
 };
