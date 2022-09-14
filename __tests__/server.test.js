@@ -36,7 +36,7 @@ describe("updated specific post", () => {
       post: "omar",
       postStatus: true,
     });
-    expect(response.status).toBe(200);
+    expect(response.status).toBe(202);
    
   });
 });
