@@ -7,8 +7,8 @@ const request = supertest(server.app);
 
 describe("get all post", () => {
   it("should get all post", async () => {
-    const post = await request.post("/post");
-    expect(post.status).toBe(201);
+    const post = await request.get("/post");
+    expect(post.status).toBe(200);
   });
 });
 
