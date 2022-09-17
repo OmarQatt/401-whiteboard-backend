@@ -36,7 +36,7 @@ class userCommentRoutes {
 
   async delete(id) {
     try {
-        console.log(id)
+        
       return await this.model.destroy({ where: { id: id } });
     } catch (e) {
       console.error(`Error while deleting the data with id : ${id}`);
