@@ -8,7 +8,7 @@ let id;
 describe("create a post", () => {
   it("should create a post", async () => {
     const post = await request.post('/post').send({
-      post: "asdsad",
+      post: "Hello welcome to the third post!",
       postStatus: true,
     });
     expect(post.status).toBe(201);
@@ -46,7 +46,7 @@ describe("updated specific post", () => {
 
 describe("delete specific post", () => {
   it("should delete one post", async () => {
-    const id = 1;
+    const id = 279;
     const post = await request.delete(`/post/${id}`);
     expect(post.status).toBe(204);
   });
@@ -55,7 +55,7 @@ describe("delete specific post", () => {
 describe("create a comment", () => {
   it("should create a comment", async () => {
     const comment = await request.post("/comment").send({
-      comment: "asdsad",
+      comment: "first comment",
       commentStatus: true,
     });
     expect(comment.status).toBe(201);
@@ -71,7 +71,7 @@ describe("get all comment", () => {
 
 describe("get specific comment", () => {
     it("should get one comment", async () => {
-      const id = 2;
+      const id = 283;
       const comment = await request.get(`/comment/${id}`);
       expect(comment.status).toBe(200);
     });
@@ -81,7 +81,7 @@ describe("get specific comment", () => {
 describe("updated specific comment", () => {
   
   it("should update a comment", async () => {
-    const id = 2;
+    const id = 280;
     const response = await request.put(`/comment/${id}`).send({
       comment: "omar",
       commentStatus: true,
