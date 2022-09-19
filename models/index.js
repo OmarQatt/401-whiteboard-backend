@@ -15,6 +15,17 @@ const sequelizeOption = {
     },
   };
 let sequelize = new Sequelize(POSTGRES_URL, sequelizeOption);
+
+sequelize.authenticate().then(() => {
+  console.log('Database connected to postgres');
+}).catch((err) => {
+  console.log(err)
+});
+const db = {};
+db.sequelize = sequelize;
+db.users = require('./user.model') (sequelize, DataTypes)
+
+
 let postModel = Post(sequelize, DataTypes);
 let commentModel = Comment(sequelize, DataTypes);
 
@@ -27,5 +38,6 @@ module.exports = {
     db: sequelize,
     Post: userCollection,
     Comment: commentCollection,
-    commentModel: commentModel
+    commentModel: commentModel,
+    users: db.users
 }
