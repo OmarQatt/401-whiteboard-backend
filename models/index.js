@@ -5,10 +5,11 @@ const Post = require('./post.model');
 
 const Comment = require('./comment.model');
 const collection = require('../collections/user-comment-routes');
-const POSTGRES_URL = process.env.DATABASE_URL 
+const POSTGRES_URL = process.env.DATABASE_URL || 'postgresql://omar:0000@localhost:5432/postgres'
 
 
 const sequelizeOption = {
+
 
      dialectOptions: {
        ssl: {
@@ -16,7 +17,6 @@ const sequelizeOption = {
          rejectUnauthorized: false,
        },
      },
-
   };
   
 let sequelize = new Sequelize(POSTGRES_URL, sequelizeOption);
