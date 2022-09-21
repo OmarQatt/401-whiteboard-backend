@@ -7,6 +7,13 @@ const User = require('../models').users;
 const signup = async (req, res) => {
   try {
     const { userName, email, password } = req.body;
+
+    if(!isUserNameValid(userName)) {
+      res.status(401).json({
+        message: "username or email cannot be empty"
+      })
+    }
+    
     const data = {
       userName,
       email,
@@ -52,6 +59,18 @@ const allUser = async (req, res) => {
   res.json(users);
 }
 
+function isUserNameValid(username) {
+  /* 
+    Usernames can only have: 
+    - Lowercase Letters (a-z) 
+    - Numbers (0-9)
+    - Dots (.)
+    - Underscores (_)
+  */
+  const res = /^[a-z0-9_\.]+$/.exec(username);
+  const valid = !!res;
+  return valid;
+}
 
 module.exports = {
   signup,
