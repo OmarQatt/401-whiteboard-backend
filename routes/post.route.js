@@ -2,7 +2,7 @@
 
 const express = require("express");
 const router = express.Router();
-
+const bearerAuth = require('../middlewares/bearerAuth');
 const { Post, Comment, commentModel } = require("../models/index");
 
 router.get("/post", getPost);
@@ -10,7 +10,7 @@ router.post("/post", createPost);
 router.delete("/post/:id", deletePost);
 router.get("/post/:id", getOnePost);
 router.put("/post/:id", updatePost);
-router.get("/getPostComment", getPostComment);
+router.get("/getPostComment",bearerAuth, getPostComment);
 
 async function getPost(req, res) {
   let post = await Post.read();

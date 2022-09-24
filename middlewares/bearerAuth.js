@@ -5,7 +5,7 @@ const { users } = require("../models");
 module.exports = async (req, res, next) => {
   console.log('From inside the middleware');
   if( !req.headers.authorization ) (
-    next('You\'re not authorized!!!!!!!!!!')
+    res.send('your not Auth')
   )
 
   const token = req.headers.authorization.split(' ').pop();
