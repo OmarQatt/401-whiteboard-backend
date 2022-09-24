@@ -7,7 +7,7 @@ module.exports = async (req, res, next) => {
   if( !req.headers.authorization ) (
     res.send('your not Auth')
   )
-
+console.log(req.headers.authorization)
   const token = req.headers.authorization.split(' ').pop();
 
   try {
@@ -20,7 +20,7 @@ module.exports = async (req, res, next) => {
   
       next();
     } else {
-      next('You\'re not authorized!!!!!!!!!!')
+      return res.send("Your not auth");
     }
 
   } catch(e) {
