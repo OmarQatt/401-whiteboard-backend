@@ -3,7 +3,7 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('user', {
+  const User = sequelize.define('users', {
     userName: {
       type: DataTypes.STRING,
       allowNull: false
@@ -32,7 +32,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   });
 
-  User.authenticateToken = token => {
+  User.authenticateToken = (token) => {
     return jwt.verify(token, process.env.JWT_SECRET, (error, decoded) => {
       if(error) {
         return error;
