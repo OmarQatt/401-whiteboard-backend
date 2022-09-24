@@ -8,7 +8,6 @@ module.exports = async (req, res, next) => {
     next('You\'re not authorized!!!!!!!!!!')
   )
 
-  // console.log(req.headers.authorization)
   const token = req.headers.authorization.split(' ').pop();
 
   try {
@@ -23,7 +22,6 @@ module.exports = async (req, res, next) => {
     } else {
       next('You\'re not authorized!!!!!!!!!!')
     }
-    // console.log(userInfo)
 
   } catch(e) {
     next(e.message || e)
