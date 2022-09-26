@@ -3,7 +3,7 @@
 const jwt = require('jsonwebtoken');
 
 module.exports = (sequelize, DataTypes) => {
-  const User = sequelize.define('users', {
+  const User = sequelize.define('userss', {
     userName: {
       type: DataTypes.STRING,
       allowNull: false
@@ -28,6 +28,22 @@ module.exports = (sequelize, DataTypes) => {
       },
       set(tokenObject) {
         return jwt.sign(tokenObject, process.env.JWT_SECRET)
+      }
+    },
+    role: {
+      type: DataTypes.ENUM('admin', 'user'),
+      allowNull: false,
+      defaultValue: 'test'
+    },
+    capabilities: {
+      type: DataTypes.VIRTUAL,
+      get: function() {
+        const acl = {
+          admin: ['read', 'create', 'delete', 'update'],
+          user: ['read', 'create'],
+          test: ['read']
+        }
+        return acl[this.role]
       }
     }
   });

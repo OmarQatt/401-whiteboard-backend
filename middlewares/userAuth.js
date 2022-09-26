@@ -15,7 +15,7 @@ const saveUser = async (req, res, next) => {
       return res.status(409).send('Username already taken')
     }
 
-    // Serch for the email in the database
+    
     const email = await User.findOne({
       where: {
         email: req.body.email
