@@ -1,10 +1,10 @@
 'use strict';
 
-const User = require('../models').users;
+const {User} = require('../models');
 
 const saveUser = async (req, res, next) => {
   try {
-    // Search for the username in the Database
+    
     const username = await User.findOne({
       where: {
         userName: req.body.userName
