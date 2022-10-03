@@ -4,19 +4,20 @@ const express = require("express");
 const router = express.Router();
 const bearerAuth = require('../middlewares/bearerAuth');
 const { Post, Comment, commentModel } = require("../models/index");
+const acl = require('../middlewares/acl')
 
-router.get("/post", getPost);
-router.post("/post", createPost);
-router.delete("/post/:id", deletePost);
-router.get("/post/:id", getOnePost);
-router.put("/post/:id", updatePost);
-router.get("/getPostComment", bearerAuth,getPostComment);
+router.get("/post",bearerAuth, acl('read'),getPost);
+router.post("/post", bearerAuth,acl('create'), createPost);
+router.delete("/post/:id", bearerAuth,acl('delete'),deletePost);
+router.get("/post/:id", bearerAuth,acl('read'),getOnePost);
+router.put("/post/:id", bearerAuth,acl('update'),updatePost);
+router.get("/getPostComment", bearerAuth,acl('read'),getPostComment);
 
 async function getPost(req, res) {
   let post = await Post.read();
-  res.status(200).json({
-    post,
-  });
+  res.status(200).json(
+    post
+  );
 }
 
 async function getOnePost(req, res) {
@@ -48,6 +49,7 @@ async function updatePost(req, res) {
 }
 
 async function getPostComment(req, res) {
+  
   const postComment = await Post.readWithComment(commentModel);
   res.status(200).json(postComment);
 }

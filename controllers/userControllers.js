@@ -2,11 +2,11 @@
 const bcrypt = require('bcrypt');
 const base64 = require('base-64');
 
-const User = require('../models').users;
+const {User} = require('../models');
 
 const signup = async (req, res) => {
   try {
-    const { userName, email, password } = req.body;
+    const { userName, email, password ,role} = req.body;
 
     // if(!isUserNameValid(userName)) {
     //   res.status(401).json({
@@ -17,16 +17,19 @@ const signup = async (req, res) => {
     const data = {
       userName,
       email,
-      password: await bcrypt.hash(password, 10)
+      password: await bcrypt.hash(password, 10),
+      role
     };
 
     const user = await User.create(data);
-
+    
     if(user) {
       res.status(201).json(user)
     }
+   
   } catch(e) {
     console.log(e)
+    
   }
 }
 
@@ -39,6 +42,7 @@ const login = async (req, res) => {
     const decodedValue = base64.decode(encodedValue);
   
     const [email, password] = decodedValue.split(':');
+   
     const user = await User.findOne({where: {
       email: email
     }});
@@ -62,7 +66,8 @@ const login = async (req, res) => {
 }
 
 const allUser = async (req, res) => {
-  const users = await User.findAll();
+  console.log(req.user)
+  const users = await User.findAll({include:{all:true}});
   res.json(users);
 };
 
