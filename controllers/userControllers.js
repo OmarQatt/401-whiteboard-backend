@@ -2,18 +2,12 @@
 const bcrypt = require('bcrypt');
 const base64 = require('base-64');
 
-const {User} = require('../models');
+const { User } = require('../models');
 
 const signup = async (req, res) => {
   try {
-    const { userName, email, password ,role} = req.body;
+    const { userName, email, password, role } = req.body;
 
-    // if(!isUserNameValid(userName)) {
-    //   res.status(401).json({
-    //     message: "username or email cannot be empty"
-    //   })
-    // }
-    
     const data = {
       userName,
       email,
@@ -22,14 +16,14 @@ const signup = async (req, res) => {
     };
 
     const user = await User.create(data);
-    
-    if(user) {
+
+    if (user) {
       res.status(201).json(user)
     }
-   
-  } catch(e) {
+
+  } catch (e) {
     console.log(e)
-    
+
   }
 }
 
@@ -40,18 +34,20 @@ const login = async (req, res) => {
     const basicHeader = req.headers.authorization.split(' ');
     const encodedValue = basicHeader.pop();
     const decodedValue = base64.decode(encodedValue);
-  
+
     const [email, password] = decodedValue.split(':');
-   
-    const user = await User.findOne({where: {
-      email: email
-    }});
-  
-  
-    if(user) {
+
+    const user = await User.findOne({
+      where: {
+        email: email
+      }
+    });
+
+
+    if (user) {
       const isSame = await bcrypt.compare(password, user.password);
-  
-      if(isSame) {
+
+      if (isSame) {
         return res.status(200).json(user)
       } else {
         return res.status(401).send('You are not Authorized');
@@ -60,27 +56,19 @@ const login = async (req, res) => {
       return res.status(401).send('You are not Authorized');
     }
 
-  } catch(e) {
+  } catch (e) {
     console.log(e)
   }
 }
 
 const allUser = async (req, res) => {
   console.log(req.user)
-  const users = await User.findAll({include:{all:true}});
+  const users = await User.findAll({ include: { all: true } });
   res.json(users);
 };
-
-// function isUserNameValid(username) {
-  
-//   const res = /^[a-z0-9_\.]+$/.exec(username);
-//   const valid = !!res;
-//   return valid;
-// }
 
 module.exports = {
   signup,
   allUser,
   login
-
 }

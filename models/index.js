@@ -5,16 +5,16 @@ const Post = require('./post.model');
 
 const Comment = require('./comment.model');
 const collection = require('../collections/user-comment-routes');
-const POSTGRES_URL = 'postgres://bgyocxpdutjsnx:b910b6a3b4516d2829fa104619bb616636f614ff514c1ae58ffea18a6d2161a3@ec2-52-30-75-37.eu-west-1.compute.amazonaws.com:5432/d4osn8kna9jrnj' || process.env.DATABASE_LOCAL
+const POSTGRES_URL = process.env.DATABASE_URL || process.env.DATABASE_LOCAL
 
 
 const sequelizeOption = {
-     dialectOptions: {
-       ssl: {
-         require: true,
-         rejectUnauthorized: false,
-       },
-     },
+    //  dialectOptions: {
+    //    ssl: {
+    //      require: true,
+    //      rejectUnauthorized: false,
+    //    },
+    //  },
   };
   
 let sequelize = new Sequelize(POSTGRES_URL, sequelizeOption);
