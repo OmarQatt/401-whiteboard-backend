@@ -9,12 +9,12 @@ const POSTGRES_URL = process.env.DATABASE_URL || process.env.DATABASE_LOCAL
 
 
 const sequelizeOption = {
-     dialectOptions: {
-       ssl: {
-         require: true,
-         rejectUnauthorized: false,
-       },
-     },
+    //  dialectOptions: {
+    //    ssl: {
+    //      require: true,
+    //      rejectUnauthorized: false,
+    //    },
+    //  },
   };
   
 let sequelize = new Sequelize(POSTGRES_URL, sequelizeOption);
